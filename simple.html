@@ -6,15 +6,22 @@
   </head>
   <body>
     <script type="text/javascript">
-      AFRAME.registerComponent('hello-world', {
-  init: function () {
-    console.log('Hello, World!');
+      AFRAME.registerComponent('rotation-reader', {
+  tick: function () {
+    // `this.el` is the element.
+    // `object3D` is the three.js object.
+
+    // `rotation` is a three.js Euler using radians. `quaternion` also available.
+    console.log(this.el.object3D.rotation);
+
+    // `position` is a three.js Vector3.
+    console.log(this.el.object3D.position);
   }
 });
     </script>
     <a-scene isMobile>
-      <a-entity hello-world id="rig" position="25 10 0">
-        <a-entity id="camera" camera look-controls></a-entity>
+      <a-entity id="rig" position="0 0 0">
+        <a-entity id="camera" camera look-controls rotation-reader></a-entity>
       </a-entity>
       <!-- position="x y z" x=-left/+right; y=-down/+up; z=-in/+out -->
       <a-entity
